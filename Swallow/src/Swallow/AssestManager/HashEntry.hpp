@@ -1,23 +1,29 @@
 #pragma once
+#include "swpch.hpp"
 
-template<typename K, typename V>
-struct HashEntry
+namespace SwallowEngine
 {
-public:
-	HashEntry(K key, V value): key(key), value(value)
-	{}
-
-	K getKey()
+	template <typename T>
+	class HashEntry
 	{
-		return key;
-	}
+	public:
+		HashEntry(std::string key, T value): key(key), value(value)
+		{}
 
-	V getValue()
-	{
-		return value;
-	}
+		~HashEntry(){}
 
-private:
-	K key;
-	V value;
+		std::string getKey()
+		{
+			return key;
+		}
+
+		T getValue()
+		{
+			return value;
+		}
+	private:
+		std::string key;
+		T value;
 };
+}
+

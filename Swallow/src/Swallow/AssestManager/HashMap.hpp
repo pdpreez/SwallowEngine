@@ -1,56 +1,59 @@
 #pragma once
 
 #include "swpch.hpp"
+#include "HashEntry.hpp"
 
-template<typename K, typename V>
+template <typename T>
 class HashEntry;
 
-template<typename K, typename V>
-class HashMap
+namespace SwallowEngine
 {
-public:
-	HashMap() {
-		table = new HashEntry<K,V> * [TABLE_SIZE];
-		for (int i = 0; i < TABLE_SIZE; i++)
-			table[i] = NULL;
-	}
-
-	// HACK: Hacky
-	void put(K key, V value)
+	template <typename T>
+	class HashMap
 	{
-		for (int i = 0; i < TABLE_SIZE; i++)
+	public:
+		HashMap() {
+			table = new HashEntry<T> * [TABLE_SIZE];
+			for (int i = 0; i < TABLE_SIZE; i++)
+				table[i] = NULL;
+		}
+
+		// HACK: Hacky
+		void put(std::string key, T value)
 		{
-			if (table[i] == NULL)
+			for (int i = 0; i < TABLE_SIZE; i++)
 			{
-				table[i] = new HashEntry(key, value);
+				if (table[i] == NULL)
+				{
+					table[i] = new HashEntry(key, value);
+				}
 			}
 		}
-	}
-	
-	// HACK: Hacky
-	template<typename K, typename V>
-	V	get(K key)
-	{
-		for (int i = 0; i < TABLE_SIZE; i++)
-		{
-			if (table[i].getKey() == key)
-			{
-				return table[i].getValue<V>();
-			}
-		}
-		return nullptr;
-	}
 
-	~HashMap()
-	{
-		for (int i = 0; i < TABLE_SIZE; i++)
+		// HACK: Hacky
+		T	get(std::string key)
 		{
-			if (table[i] != NULL)
-				delete table[i];
+			for (int i = 0; i < TABLE_SIZE; i++)
+			{
+				if (table[i]->getKey() == key)
+				{
+					return table[i]->getValue();
+				}
+			}
+			return nullptr;
 		}
-		delete[] table;
-	}
-private:
-	const UINT8 TABLE_SIZE = 256;
-	HashEntry<K,V>** table;
-};
+
+		~HashMap()
+		{
+			for (int i = 0; i < TABLE_SIZE; i++)
+			{
+				if (table[i] != NULL)
+					delete table[i];
+			}
+			delete[] table;
+		}
+	private:
+		const int TABLE_SIZE = 256;
+		HashEntry<T>** table;
+	};
+}
