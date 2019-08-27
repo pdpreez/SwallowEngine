@@ -1,7 +1,7 @@
 #pragma once
 #include "swpch.hpp"
 
-namespace SwallowEngine
+namespace Swallow
 {
 	template <typename T>
 	class HashEntry

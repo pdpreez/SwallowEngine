@@ -3,7 +3,7 @@
 #include "Swallow/Renderer/Texture.hpp"
 
 #include "swpch.hpp"
-namespace SwallowEngine
+namespace Swallow
 {
 	enum ResourceType
 	{
@@ -29,7 +29,7 @@ namespace SwallowEngine
 		void	addResource(ResourceType, std::string, T);
 
 	private:
-		HashMap<std::shared_ptr<Swallow::Texture>>* m_Textures;
+		HashMap<std::shared_ptr<Texture>>* m_Textures;
 		HashMap<bool>* m_Models;
 		HashMap<bool>* m_Sounds;
 		HashMap<bool>* m_Misc;

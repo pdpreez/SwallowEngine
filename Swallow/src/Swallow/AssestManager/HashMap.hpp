@@ -6,7 +6,7 @@
 template <typename T>
 class HashEntry;
 
-namespace SwallowEngine
+namespace Swallow
 {
 	template <typename T>
 	class HashMap

@@ -1,12 +1,12 @@
 #include "swpch.hpp"
 #include "AssestManager.hpp"
 
-namespace SwallowEngine
+namespace Swallow
 {
 	AssestManager::AssestManager()
 	{
 
-		m_Textures = new HashMap<std::shared_ptr<Swallow::Texture>>();
+		m_Textures = new HashMap<std::shared_ptr<Texture>>();
 		m_Models = new HashMap<bool>();
 		m_Sounds = new HashMap<bool>();
 		m_Misc = new HashMap<bool>();
